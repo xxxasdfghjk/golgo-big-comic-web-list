@@ -9,8 +9,6 @@ import {
     IconButton,
     InputAdornment,
 } from "@mui/material";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import ClearIcon from "@mui/icons-material/Clear";
 import { EpisodeCard } from "./components/EpisodeCard";
 import { loadEpisodes } from "./utils/csvLoader";
@@ -20,7 +18,6 @@ function App() {
     const [episodes, setEpisodes] = useState<Episode[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [loading, setLoading] = useState(true);
-    const [columns, setColumns] = useState<number>(4);
 
     useEffect(() => {
         loadEpisodes().then((data) => {
@@ -28,12 +25,6 @@ function App() {
             setLoading(false);
         });
     }, []);
-
-    const handleColumnsChange = (event: React.MouseEvent<HTMLElement>, newColumns: number | null) => {
-        if (newColumns !== null) {
-            setColumns(newColumns);
-        }
-    };
 
     const handleClear = () => {
         setSearchTerm("");
@@ -71,7 +62,7 @@ function App() {
                     xs: 12,
                     sm: 6,
                     md: 4,
-                    lg: 4,
+                    lg: 3,
                 };
         }
     };
@@ -125,7 +116,7 @@ function App() {
             ) : (
                 <Grid container spacing={2}>
                     {filteredEpisodes.map((episode, index) => (
-                        <Grid item {...getGridSize(columns)} key={index}>
+                        <Grid key={index} {...getGridSize(4)}>
                             <EpisodeCard episode={episode} />
                         </Grid>
                     ))}
