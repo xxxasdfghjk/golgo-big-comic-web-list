@@ -1,6 +1,6 @@
 import { Episode } from "../types/Episode";
 
-const BASE_PATH = import.meta.env.DEV ? "" : "/golgo-episode-viewer";
+const BASE_PATH = import.meta.env.DEV ? "" : "/golgo-big-comic-web-list";
 
 export async function loadEpisodes(): Promise<Episode[]> {
     try {
